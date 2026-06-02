@@ -6,7 +6,7 @@ class Solution {
                 max=Math.max(j-i,max);
                 j++;
             }else{
-               
+                if(i>=j)j++;
                 i++;
             }
         } return max;
