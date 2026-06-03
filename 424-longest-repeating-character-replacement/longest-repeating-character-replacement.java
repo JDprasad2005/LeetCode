@@ -5,7 +5,7 @@ class Solution {
          for(int r=0;r<s.length();r++){
               map.put(s.charAt(r),map.getOrDefault(s.charAt(r),0)+1);
               mf=Math.max(mf,map.get(s.charAt(r)));
-              if((r-l+1-mf)>k){
+              while((r-l+1-mf)>k){
                 map.put(s.charAt(l),map.getOrDefault(s.charAt(l),0)-1);
                 l++;
               }
