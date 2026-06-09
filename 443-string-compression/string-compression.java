@@ -14,16 +14,15 @@ class Solution {
                 }
                 c=1;
             }
-            if(j==chars.length-1){
-                chars[i++]=chars[j];
+            j++;
+        } 
+                chars[i++]=chars[j-1];
                 if(c>1){
                      String s = String.valueOf(c);
                     for (char ch : s.toCharArray()) {
                         chars[i++] = ch;
                     }
-                }
-            }
-            j++;
-        } return i;
+                 }
+        return i;
     }
 }
