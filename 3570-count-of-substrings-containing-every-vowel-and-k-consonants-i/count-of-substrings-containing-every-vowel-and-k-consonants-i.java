@@ -1,25 +1,34 @@
 class Solution {
     public int countOfSubstrings(String word, int k) {
-        int n = word.length();
+        return countAtLeast(word, k) - countAtLeast(word, k + 1);
+    }
+
+    private int countAtLeast(String word, int k) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int consonants = 0;
+        int l = 0;
         int ans = 0;
 
-        for (int i = 0; i < n; i++) {
-            int consonants = 0;
-            HashSet<Character> vowels = new HashSet<>();
+        for (int r = 0; r < word.length(); r++) {
+            char ch = word.charAt(r);
 
-            for (int j = i; j < n; j++) {
-                char ch = word.charAt(j);
+            if (isVowel(ch)) {
+                map.put(ch, map.getOrDefault(ch, 0) + 1);
+            } else {
+                consonants++;
+            }
 
-                if (isVowel(ch)) {
-                    vowels.add(ch);
+            while (map.size() == 5 && consonants >= k) {
+                ans += word.length() - r;
+
+                char left = word.charAt(l++);
+                if (isVowel(left)) {
+                    map.put(left, map.get(left) - 1);
+                    if (map.get(left) == 0) {
+                        map.remove(left);
+                    }
                 } else {
-                    consonants++;
-                }
-
-                if (consonants > k) break;
-
-                if (consonants == k && vowels.size() == 5) {
-                    ans++;
+                    consonants--;
                 }
             }
         }
