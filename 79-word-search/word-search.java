@@ -3,10 +3,10 @@ class Solution {
           int m=board.length;
           int n=board[0].length;
 
-        int[][] visited=new int[m][n];
         boolean ans=false;
         for(int i=0;i<board.length;i++){
             for(int j=0;j<board[0].length;j++){
+                 int[][] visited=new int[m][n];
                 if(board[i][j]==word.charAt(0)){
                       ans=rat(board,word,m,n,i,j,0,visited);
                      if(ans) return true;
